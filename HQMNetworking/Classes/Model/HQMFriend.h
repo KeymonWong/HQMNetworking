@@ -7,7 +7,6 @@
 //
 
 #import "MTLModel.h"
-
 #import "MTLJSONAdapter.h"
 
 @interface HQMFriend : MTLModel <MTLJSONSerializing>
