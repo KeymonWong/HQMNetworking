@@ -96,17 +96,17 @@
     [clazzReq startRequest];
 
 
-    ///< 实例方法
-    HQMLoginRequest *instanceReq = [[HQMLoginRequest alloc] init];
-    [instanceReq startWithCompletionBlockWithSuccess:^(NSInteger errCode, NSDictionary *responseDict, id model) {
-        DLog(@"errCode:%ld---dict:%@---model:%@", errCode, responseDict, model);
-    } failure:^(NSError *error) {
-        DLog(@"error:%@", error.localizedFailureReason);
-    }];
-    instanceReq.showHUD = YES;
-    instanceReq.uid = @"1181";
-    instanceReq.token = @"12d2eae5d0ec3b8b3d965f388127ddfd";
-    [instanceReq startRequest];
+//    ///< 实例方法
+//    HQMLoginRequest *instanceReq = [[HQMLoginRequest alloc] init];
+//    [instanceReq startWithCompletionBlockWithSuccess:^(NSInteger errCode, NSDictionary *responseDict, id model) {
+//        DLog(@"errCode:%ld---dict:%@---model:%@", errCode, responseDict, model);
+//    } failure:^(NSError *error) {
+//        DLog(@"error:%@", error.localizedFailureReason);
+//    }];
+//    instanceReq.showHUD = YES;
+//    instanceReq.uid = @"1181";
+//    instanceReq.token = @"12d2eae5d0ec3b8b3d965f388127ddfd";
+//    [instanceReq startRequest];
 }
 
 #pragma mark - 通过 delegate 回调

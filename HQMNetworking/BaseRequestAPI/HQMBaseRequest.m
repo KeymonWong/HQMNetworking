@@ -80,7 +80,7 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
 - (instancetype)initWithSuccessBlock:(HQMRequestSuccessBlock)successBlock
                         failureBlock:(HQMRequestFailureBlock)failureBlock
 {
-    if (self = [super init]) {
+    if (self = [self init]) {
         self.successBlock = successBlock;
         self.failureBlock = failureBlock;
     }
@@ -342,6 +342,7 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
     return _timeoutInterval;
 }
 
+///< 允许使用蜂窝移动网
 - (BOOL)allowsCellularAccess {
     return YES;
 }
