@@ -83,6 +83,7 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
     if (self = [self init]) {
         self.successBlock = successBlock;
         self.failureBlock = failureBlock;
+        self.uploadProgress = nil;
     }
     return self;
 }
@@ -91,9 +92,20 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
     return [[[self class] alloc] initWithSuccessBlock:successBlock failureBlock:failureBlock];
 }
 
-- (void)startWithCompletionBlockWithSuccess:(HQMRequestSuccessBlock)success failure:(HQMRequestFailureBlock)failure {
+- (void)startCompletionBlockWithSuccess:(HQMRequestSuccessBlock)success failure:(HQMRequestFailureBlock)failure {
     self.successBlock = success;
     self.failureBlock = failure;
+    self.uploadProgress = nil;
+}
+
+
+- (void)startUploadTaskWithSuccess:(HQMRequestSuccessBlock)success
+                           failure:(HQMRequestFailureBlock)failure
+                    uploadProgress:(AFURLSessionTaskProgressBlock)uploadProgress
+{
+    self.successBlock = success;
+    self.failureBlock = failure;
+    self.uploadProgress = uploadProgress;
 }
 
 - (void)startRequest {
@@ -128,6 +140,7 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
     [_requestTask resume];
 }
 
+#warning 此处可以配置所有请求都需要的共同的参数
 - (NSURLSessionTask *)sessionTaskForError:(NSError *__autoreleasing *)error {
     HQMRequestMethod method = [self requestMethod];
 
@@ -141,16 +154,29 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
 //    }
 //    [params setObject:token forKey:kRequestToken];
 
-
     AFConstructingBodyBlock constructingBodyBlock = [self constructingBodyBlock];
     AFHTTPRequestSerializer *requestSerializer = [self requestSerializer];
 
     switch (method) {
         case HQMRequestMethodGET: {
-            return [self dataTaskWithHTTPMethod:@"GET" requestSerializer:requestSerializer URLString:_url parameters:params error:error];
+            return [self dataTaskWithHTTPMethod:@"GET"
+                              requestSerializer:requestSerializer
+                                      URLString:_url
+                                     parameters:params
+                                 uploadProgress:nil
+                               downloadProgress:nil
+                      constructingBodyWithBlock:nil
+                                          error:error];
         } break;
         case HQMRequestMethodPOST: {
-            return [self dataTaskWithHTTPMethod:@"POST" requestSerializer:requestSerializer URLString:_url parameters:params constructingBodyWithBlock:constructingBodyBlock error:error];
+            return [self dataTaskWithHTTPMethod:@"POST"
+                              requestSerializer:requestSerializer
+                                      URLString:_url
+                                     parameters:params
+                                 uploadProgress:self.uploadProgress
+                               downloadProgress:nil
+                      constructingBodyWithBlock:constructingBodyBlock
+                                          error:error];
         } break;
     }
 }
@@ -159,16 +185,9 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
                                requestSerializer:(AFHTTPRequestSerializer *)requestSerializer
                                        URLString:(NSString *)URLString
                                       parameters:(id)param
-                                           error:(NSError * _Nullable __autoreleasing *)error
-{
-    return [self dataTaskWithHTTPMethod:method requestSerializer:requestSerializer URLString:URLString parameters:param constructingBodyWithBlock:nil error:error];
-}
-
-- (NSURLSessionDataTask *)dataTaskWithHTTPMethod:(NSString *)method
-                               requestSerializer:(AFHTTPRequestSerializer *)requestSerializer
-                                       URLString:(NSString *)URLString
-                                      parameters:(id)param
-                       constructingBodyWithBlock:(nullable void(^)(id <AFMultipartFormData>formData))block
+                                  uploadProgress:(nullable void (^)(NSProgress *uploadProgress))uploadProgress
+                                downloadProgress:(nullable void (^)(NSProgress *downloadProgress))downloadProgress
+                       constructingBodyWithBlock:(nullable void (^)(id <AFMultipartFormData>formData))block
                                            error:(NSError * _Nullable __autoreleasing *)error
 {
     NSMutableURLRequest *request = nil;
@@ -180,7 +199,7 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
     }
 
     __block NSURLSessionDataTask *dataTask = nil;
-    dataTask = [_manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    dataTask = [_manager dataTaskWithRequest:request uploadProgress:uploadProgress downloadProgress:downloadProgress completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         //AFN 返回的数据responseObject已经是字典了，不必再用NSJSONSerialization解析了
         [self handleRequestResult:dataTask response:response responseObject:responseObject error:error];
     }];

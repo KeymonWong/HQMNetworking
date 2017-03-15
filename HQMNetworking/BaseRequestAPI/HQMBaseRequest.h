@@ -40,6 +40,7 @@ typedef NS_ENUM(NSInteger, HQMResponseSerializerType) {
 
 @property (nonatomic, copy) AFConstructingBodyBlock constructingBodyBlock;
 @property (nonatomic, copy) AFURLSessionTaskProgressBlock resumableDownloadProgressBlock;
+@property (nonatomic, copy) AFURLSessionTaskProgressBlock uploadProgress;
 
 @property (nonatomic, copy) HQMRequestSuccessBlock successBlock;
 @property (nonatomic, copy) HQMRequestFailureBlock failureBlock;
@@ -49,8 +50,19 @@ typedef NS_ENUM(NSInteger, HQMResponseSerializerType) {
 + (instancetype)requestWithSuccessBlock:(HQMRequestSuccessBlock)successBlock
                            failureBlock:(HQMRequestFailureBlock)failureBlock;
 
-- (void)startWithCompletionBlockWithSuccess:(HQMRequestSuccessBlock)success
-                                    failure:(HQMRequestFailureBlock)failure;
+- (void)startCompletionBlockWithSuccess:(HQMRequestSuccessBlock)success
+                                failure:(HQMRequestFailureBlock)failure;
+
+/**
+ 带进度的图片上传
+
+ @param success 成功回调
+ @param failure 失败回调
+ @param uploadProgress 进度回调
+ */
+- (void)startUploadTaskWithSuccess:(HQMRequestSuccessBlock)success
+                           failure:(HQMRequestFailureBlock)failure
+                    uploadProgress:(AFURLSessionTaskProgressBlock)uploadProgress;
 
 /**
  * @brief 公共方法，开始请求，不管是使用 block 回调还是 delegate 回调，都要调用此方法

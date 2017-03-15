@@ -9,6 +9,7 @@
 #import "HQMBaseRequest.h"
 
 @interface HQMLoginRequest : HQMBaseRequest
+/**接口需要传的参数*/
 @property (nonatomic, copy) NSString *uid;
 @property (nonatomic, copy) NSString *token;
 @end

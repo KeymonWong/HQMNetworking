@@ -9,5 +9,6 @@
 #import "HQMBaseRequest.h"
 
 @interface HQMUploadRequest : HQMBaseRequest
-@property (nonatomic, strong) NSData *avatar;
+//@property (nonatomic, strong) NSData *avatar;
+@property (nonatomic, strong) NSArray<UIImage *> *images;
 @end

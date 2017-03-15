@@ -13,7 +13,7 @@
 @protocol AFMultipartFormData;
 
 typedef void(^AFConstructingBodyBlock)(id<AFMultipartFormData> data);
-typedef void(^AFURLSessionTaskProgressBlock)(NSProgress *);
+typedef void(^AFURLSessionTaskProgressBlock)(NSProgress *progress);
 
 
 /*!
