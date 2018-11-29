@@ -64,7 +64,10 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
     _page = -1;
     _showHUD = NO;
     _timeoutInterval = 10.;
-    _manager = [AFHTTPSessionManager manager];
+    
+    if (!_manager) {
+        _manager = [AFHTTPSessionManager manager];
+    }
 
     //_processingQueue = dispatch_group_create();
 
@@ -435,6 +438,21 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
     securityPolicy.pinnedCertificates = cerDataSet;
 
     return securityPolicy;
+}
+
+- (void)cancelRequest {
+    // 取消请求
+    // 仅仅是取消请求, 不会关闭session
+    if (_manager.tasks.count != 0) {
+        [_manager.tasks makeObjectsPerformSelector:@selector(cancel)];
+    }
+    
+//    // 关闭session并且取消请求(session一旦被关闭了, 这个manager就没法再发送请求)
+//    [_manager invalidateSessionCancelingTasks:YES];
+//    _manager = nil;
+//
+//    // 一个任务被取消了, 会调用AFN请求的failure这个block
+//    [task cancel];
 }
 
 @end

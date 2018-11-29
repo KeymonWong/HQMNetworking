@@ -119,4 +119,12 @@ typedef NS_ENUM(NSInteger, HQMResponseSerializerType) {
  */
 - (void)handleData:(id)data errCode:(NSInteger)resCode;
 
+/**
+ * 取消请求
+ *
+ * @notice 仅仅是取消请求, 不会关闭session. 关闭session并且取消请求(session一旦被关闭了,
+ *         这个manager就没法再发送请求)
+ */
+- (void)cancelRequest;
+
 @end
