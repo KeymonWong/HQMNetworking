@@ -201,8 +201,13 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
         request = [requestSerializer requestWithMethod:method URLString:URLString parameters:param error:error];
     }
 
+    //开启状态栏网络状态小菊花
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
     __block NSURLSessionDataTask *dataTask = nil;
     dataTask = [_manager dataTaskWithRequest:request uploadProgress:uploadProgress downloadProgress:downloadProgress completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        //关闭状态栏网络状态小菊花
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         //AFN 返回的数据responseObject已经是字典了，不必再用NSJSONSerialization解析了
         [self handleRequestResult:dataTask response:response responseObject:responseObject error:error];
     }];
@@ -443,7 +448,7 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
 - (void)cancelRequest {
     // 取消请求
     // 仅仅是取消请求, 不会关闭session
-    if (_manager.tasks.count != 0) {
+    if (_manager.tasks.count > 0) { ///< 取消之前所有的任务
         [_manager.tasks makeObjectsPerformSelector:@selector(cancel)];
     }
     
