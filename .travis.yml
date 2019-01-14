@@ -21,7 +21,7 @@ git:
   quiet: true  # Git Clone Quiet, 默认为true
   submodules: false  # Git Submodules, 默认为true
 
-install: ./install-dependencies.sh
+# install: ./install-dependencies.sh
 
 jobs:
   include:
