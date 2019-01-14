@@ -1,5 +1,54 @@
-language: ruby
-rvm:
-  - 2.2
-  - jruby
-  
+os: osx
+osx_image: xcode10.1
+
+sudo: false
+dist: trusty
+
+language: objective-c
+cache:
+  - cocoapods
+  - bundler
+# 如果项目是workspace就用下面这个，否则用project的
+# xcode_workspace: MyProject.xcworkspace
+xcode_project: MyProject.xcodeproj # path to your xcodeproj folder
+xcode_scheme: MyProjectTests
+xcode_destination: platform=iOS Simulator,OS=10.1,name=iPad Pro (9.7-inch)
+# By default, Travis CI will assume that your Podfile is in the root of the repository. If this is not the case, you can specify where the Podfile is like this:
+# podfile: path/to/Podfile
+
+git:
+  depth: 3  # Git Clone Depth
+  quiet: true  # Git Clone Quiet, 默认为true
+  submodules: false  # Git Submodules, 默认为true
+
+install: ./install-dependencies.sh
+
+jobs:
+  include:
+    - script: echo "Running unit tests (1)"
+    - script: echo "Running unit tests (2)"
+    - stage: GitHub Release
+      script: echo "Deploying to GitHub releases ..."
+    - name: deploy
+      # require the branch name to be master (note for PRs this is the base branch name)
+      if: branch = master
+      
+deploy:
+  provider: releases
+  api_key: "ZfPJ9qi73NViaaphPSW1IQ"
+    # secure: YOUR_API_KEY_ENCRYPTED
+  file: "FILE TO UPLOAD"
+  skip_cleanup: true
+  on:
+    tags: true
+
+notification:
+  email:
+    recipients:
+      - hqm_vip@163.com
+    # slack:
+    on_success: change # always never change, default: change
+    on_failure: always # default: always
+
+matrix:
+  fast_finish: true  # 所有required jobs finish之后，编译结果就确定出来了
