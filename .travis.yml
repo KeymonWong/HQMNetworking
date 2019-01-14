@@ -11,7 +11,7 @@ cache:
 # 如果项目是workspace就用下面这个，否则用project的
 # xcode_workspace: HQMNetworking.xcworkspace
 xcode_project: HQMNetworking.xcodeproj # path to your xcodeproj folder
-xcode_scheme: HQMNetworkingTests
+xcode_scheme: HQMNetworking
 xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone 8
 # By default, Travis CI will assume that your Podfile is in the root of the repository. If this is not the case, you can specify where the Podfile is like this:
 # podfile: path/to/Podfile
