@@ -1,6 +1,6 @@
 //
-//  HQMRequestCallback.h
-//  HQMNetworking
+//  OKRequestCallback.h
+//  OKNetworking
 //
 //  Created by 小伴 on 2017/1/6.
 //  Copyright © 2017年 huangqimeng. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class HQMBaseRequest;
+@class OKBaseRequest;
 
 @protocol AFMultipartFormData;
 
@@ -19,14 +19,14 @@ typedef void(^AFURLSessionTaskProgressBlock)(NSProgress *progress);
 /*!
  *   AFN 请求封装的Block回调
  */
-typedef void(^HQMRequestSuccessBlock)(NSInteger errCode, NSDictionary *responseDict, id model);
-typedef void(^HQMRequestFailureBlock)(NSError *error);
+typedef void(^OKRequestSuccessBlock)(NSInteger errCode, NSDictionary *responseDict, id model);
+typedef void(^OKRequestFailureBlock)(NSError *error);
 
 
 /*!
  *   AFN 请求封装的代理回调
  */
-@protocol HQMBaseRequestDelegate <NSObject>
+@protocol OKBaseRequestDelegate <NSObject>
 
 @optional
 /**
@@ -45,5 +45,5 @@ typedef void(^HQMRequestFailureBlock)(NSError *error);
  *   网络请求项即将被移除掉
  *   @param item 网络请求项
  */
-- (void)requestWillDealloc:(HQMBaseRequest *)item;
+- (void)requestWillDealloc:(OKBaseRequest *)item;
 @end

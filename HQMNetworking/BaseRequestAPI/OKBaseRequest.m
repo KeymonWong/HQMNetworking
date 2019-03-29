@@ -1,12 +1,12 @@
 //
-//  HQMBaseRequest.m
+//  OKBaseRequest.m
 //  Buddy
 //
 //  Created by 小伴 on 2016/12/14.
 //  Copyright © 2016年 huang qimeng. All rights reserved.
 //
 
-#import "HQMBaseRequest.h"
+#import "OKBaseRequest.h"
 #import "Reachability.h"
 #import "SVProgressHUD.h"
 
@@ -21,21 +21,21 @@
 
 #ifdef DEBUG //处于开发测试阶段
 
-NSString * const HQMNetworkDomain = @"http://101.200.139.156";
+NSString * const OKNetworkDomain = @"http://101.200.139.156";
 
 ///< 关闭https SSL 验证
 #define kOpenHttpsAuth NO
 
 #else //处于发布正式阶段
 
-NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
+NSString * const OKNetworkDomain = @"http://www.xiaoban.mobi";
 
 ///< 开启https SSL 验证
 #define kOpenHttpsAuth YES
 
 #endif
 
-@interface HQMBaseRequest ()
+@interface OKBaseRequest ()
 {
     NSInteger _page;
     NSString *_url;
@@ -49,7 +49,7 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
 
 @end
 
-@implementation HQMBaseRequest
+@implementation OKBaseRequest
 
 - (instancetype)init {
     self = [super init];
@@ -80,8 +80,8 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
     //_manager.completionGroup = _processingQueue;
 }
 
-- (instancetype)initWithSuccessBlock:(HQMRequestSuccessBlock)successBlock
-                        failureBlock:(HQMRequestFailureBlock)failureBlock
+- (instancetype)initWithSuccessBlock:(OKRequestSuccessBlock)successBlock
+                        failureBlock:(OKRequestFailureBlock)failureBlock
 {
     if (self = [self init]) {
         self.successBlock = successBlock;
@@ -91,19 +91,19 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
     return self;
 }
 
-+ (instancetype)requestWithSuccessBlock:(HQMRequestSuccessBlock)successBlock failureBlock:(HQMRequestFailureBlock)failureBlock {
++ (instancetype)requestWithSuccessBlock:(OKRequestSuccessBlock)successBlock failureBlock:(OKRequestFailureBlock)failureBlock {
     return [[[self class] alloc] initWithSuccessBlock:successBlock failureBlock:failureBlock];
 }
 
-- (void)startCompletionBlockWithSuccess:(HQMRequestSuccessBlock)success failure:(HQMRequestFailureBlock)failure {
+- (void)startCompletionBlockWithSuccess:(OKRequestSuccessBlock)success failure:(OKRequestFailureBlock)failure {
     self.successBlock = success;
     self.failureBlock = failure;
     self.uploadProgress = nil;
 }
 
 
-- (void)startUploadTaskWithSuccess:(HQMRequestSuccessBlock)success
-                           failure:(HQMRequestFailureBlock)failure
+- (void)startUploadTaskWithSuccess:(OKRequestSuccessBlock)success
+                           failure:(OKRequestFailureBlock)failure
                     uploadProgress:(AFURLSessionTaskProgressBlock)uploadProgress
 {
     self.successBlock = success;
@@ -132,7 +132,7 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
 }
 
 - (void)constructURL {
-    _url = [NSString stringWithFormat:@"%@%@", HQMNetworkDomain, [self requestURLPath]];
+    _url = [NSString stringWithFormat:@"%@%@", OKNetworkDomain, [self requestURLPath]];
 }
 
 - (void)constructSessionTask {
@@ -145,7 +145,7 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
 
 #warning 此处可以配置所有请求都需要的共同的参数
 - (NSURLSessionTask *)sessionTaskForError:(NSError *__autoreleasing *)error {
-    HQMRequestMethod method = [self requestMethod];
+    OKRequestMethod method = [self requestMethod];
 
     //请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:[self requestArguments]];
@@ -161,7 +161,7 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
     AFHTTPRequestSerializer *requestSerializer = [self requestSerializer];
 
     switch (method) {
-        case HQMRequestMethodGET: {
+        case OKRequestMethodGET: {
             return [self dataTaskWithHTTPMethod:@"GET"
                               requestSerializer:requestSerializer
                                       URLString:_url
@@ -171,7 +171,7 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
                       constructingBodyWithBlock:nil
                                           error:error];
         } break;
-        case HQMRequestMethodPOST: {
+        case OKRequestMethodPOST: {
             return [self dataTaskWithHTTPMethod:@"POST"
                               requestSerializer:requestSerializer
                                       URLString:_url
@@ -224,10 +224,10 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
 - (AFHTTPRequestSerializer *)requestSerializer {
     AFHTTPRequestSerializer *requestSerializer = nil;
     switch ([self requestSerializerType]) {
-        case HQMRequestSerializerTypeHTTP: {
+        case OKRequestSerializerTypeHTTP: {
             requestSerializer = [AFHTTPRequestSerializer serializer];
         } break;
-        case HQMRequestSerializerTypeJSON: {
+        case OKRequestSerializerTypeJSON: {
             requestSerializer = [AFJSONRequestSerializer serializer];
         } break;
     }
@@ -378,21 +378,21 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
     return nil;
 }
 
-- (HQMRequestMethod)requestMethod {
-    return HQMRequestMethodGET;
+- (OKRequestMethod)requestMethod {
+    return OKRequestMethodGET;
 }
 
-- (HQMRequestSerializerType)requestSerializerType {
-    return HQMRequestSerializerTypeHTTP;
+- (OKRequestSerializerType)requestSerializerType {
+    return OKRequestSerializerTypeHTTP;
 }
 
 - (NSDictionary *)requestArguments {
-    NSAssert([self isMemberOfClass:[HQMBaseRequest class]], @"子类必须实现requestArguments");
+    NSAssert([self isMemberOfClass:[OKBaseRequest class]], @"子类必须实现requestArguments");
     return nil;
 }
 
 - (NSString *)requestURLPath {
-    NSAssert([self isMemberOfClass:[HQMBaseRequest class]], @"子类必须实现requestURLPath");
+    NSAssert([self isMemberOfClass:[OKBaseRequest class]], @"子类必须实现requestURLPath");
     return nil;
 }
 
@@ -401,7 +401,7 @@ NSString * const HQMNetworkDomain = @"http://www.xiaoban.mobi";
 }
 
 - (void)handleData:(id)data errCode:(NSInteger)errCode {
-    NSAssert([self isMemberOfClass:[HQMBaseRequest class]], @"子类必须实现handleData:data errCode:errCode");
+    NSAssert([self isMemberOfClass:[OKBaseRequest class]], @"子类必须实现handleData:data errCode:errCode");
 }
 
 /**

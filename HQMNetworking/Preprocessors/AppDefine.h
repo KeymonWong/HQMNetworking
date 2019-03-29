@@ -18,7 +18,7 @@
 #define kIsNotFirstUse      @"kIsNotFirstUse"
 #define kIsLogin            @"kIsLogin"
 
-static NSString * const HQMTabBarItemDidClickRepeatNotification = @"HQMTabBarItemDidClickRepeatNotification";
+static NSString * const OKTabBarItemDidClickRepeatNotification = @"OKTabBarItemDidClickRepeatNotification";
 
 
 #endif /* AppDefine_h */

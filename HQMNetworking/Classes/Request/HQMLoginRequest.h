@@ -1,14 +1,14 @@
 //
 //  HQMLoginRequest.h
-//  HQMNetworking
+//  OKNetworking
 //
 //  Created by 小伴 on 2017/1/6.
 //  Copyright © 2017年 huangqimeng. All rights reserved.
 //
 
-#import "HQMBaseRequest.h"
+#import "OKBaseRequest.h"
 
-@interface HQMLoginRequest : HQMBaseRequest
+@interface HQMLoginRequest : OKBaseRequest
 /**接口需要传的参数*/
 @property (nonatomic, copy) NSString *uid;
 @property (nonatomic, copy) NSString *token;

@@ -1,6 +1,6 @@
 //
 //  HQMLoginRequest.m
-//  HQMNetworking
+//  OKNetworking
 //
 //  Created by 小伴 on 2017/1/6.
 //  Copyright © 2017年 huangqimeng. All rights reserved.
@@ -12,8 +12,8 @@
 
 @implementation HQMLoginRequest
 
-- (HQMRequestMethod)requestMethod {
-    return HQMRequestMethodGET;
+- (OKRequestMethod)requestMethod {
+    return OKRequestMethodGET;
 }
 
 - (NSString *)requestURLPath {

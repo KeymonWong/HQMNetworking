@@ -1,6 +1,6 @@
 //
-//  HQMNetworkingTests.m
-//  HQMNetworkingTests
+//  OKNetworkingTests.m
+//  OKNetworkingTests
 //
 //  Created by 小伴 on 2016/12/14.
 //  Copyright © 2016年 huangqimeng. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface HQMNetworkingTests : XCTestCase
+@interface OKNetworkingTests : XCTestCase
 
 @end
 
-@implementation HQMNetworkingTests
+@implementation OKNetworkingTests
 
 - (void)setUp {
     [super setUp];

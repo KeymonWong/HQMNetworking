@@ -1,6 +1,6 @@
 //
 //  HQMUploadImageParam.h
-//  HQMNetworking
+//  OKNetworking
 //
 //  Created by 小伴 on 2017/1/9.
 //  Copyright © 2017年 huangqimeng. All rights reserved.

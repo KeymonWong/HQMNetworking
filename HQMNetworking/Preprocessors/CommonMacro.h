@@ -134,7 +134,7 @@
 #define kAppWindow (kAppDelegate.window)
 #define kAppRootViewController (kAppWindow.rootViewController)
 
-//#define AppDelegate ((HQMAppDelegate *)[[UIApplication sharedApplication] delegate])
+//#define AppDelegate ((OKAppDelegate *)[[UIApplication sharedApplication] delegate])
 
 #define UserDefaults ([NSUserDefaults standardUserDefaults])
 #define NotificationCenter ([NSNotificationCenter defaultCenter])

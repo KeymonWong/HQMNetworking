@@ -1,6 +1,6 @@
 //
 //  TestViewController.m
-//  HQMNetworking
+//  OKNetworking
 //
 //  Created by 小伴 on 2016/12/14.
 //  Copyright © 2016年 huangqimeng. All rights reserved.
@@ -14,7 +14,7 @@
 #import "SVProgressHUD.h"
 #import "UIProgressView+AFNetworking.h"
 
-@interface TestViewController ()<HQMBaseRequestDelegate>
+@interface TestViewController ()<OKBaseRequestDelegate>
 @property (nonatomic, weak) UIProgressView *progressView;
 @property (nonatomic, weak) UILabel *progressLabel;
 @end
@@ -215,7 +215,7 @@
     [req startRequest];
 }
 
-#pragma mark HQMBaseRequestDelegate代理方法
+#pragma mark OKBaseRequestDelegate代理方法
 - (void)requestDidFinishLoadingWithData:(id)returnData errCode:(NSInteger)errCode {
     DLog(@"errCode:%ld---data:%@", errCode, returnData);
 }

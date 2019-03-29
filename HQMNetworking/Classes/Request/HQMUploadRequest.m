@@ -1,6 +1,6 @@
 //
 //  HQMUploadRequest.m
-//  HQMNetworking
+//  OKNetworking
 //
 //  Created by 小伴 on 2017/1/9.
 //  Copyright © 2017年 huangqimeng. All rights reserved.
@@ -12,8 +12,8 @@
 
 @implementation HQMUploadRequest
 
-- (HQMRequestMethod)requestMethod {
-    return HQMRequestMethodPOST;
+- (OKRequestMethod)requestMethod {
+    return OKRequestMethodPOST;
 }
 
 - (NSString *)requestURLPath {

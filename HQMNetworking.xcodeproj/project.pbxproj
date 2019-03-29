@@ -54,7 +54,7 @@
 		42D2D3391E23750D003179F7 /* HQMFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D2D3331E23750D003179F7 /* HQMFriend.m */; };
 		42D2D33A1E23750D003179F7 /* HQMLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D2D3361E23750D003179F7 /* HQMLoginRequest.m */; };
 		42D2D33E1E23757C003179F7 /* NSValueTransformer+JSONTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D2D33D1E23757C003179F7 /* NSValueTransformer+JSONTransformer.m */; };
-		42D2D3451E23758A003179F7 /* HQMBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D2D3411E23758A003179F7 /* HQMBaseRequest.m */; };
+		42D2D3451E23758A003179F7 /* OKBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D2D3411E23758A003179F7 /* OKBaseRequest.m */; };
 		42D2D3461E23758A003179F7 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D2D3441E23758A003179F7 /* Reachability.m */; };
 		42D2D3491E238982003179F7 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D2D3481E238982003179F7 /* NSString+MD5.m */; };
 		42D2D34C1E238B36003179F7 /* HQMUploadImageParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D2D34B1E238B36003179F7 /* HQMUploadImageParam.m */; };
@@ -187,9 +187,9 @@
 		42D2D3361E23750D003179F7 /* HQMLoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQMLoginRequest.m; sourceTree = "<group>"; };
 		42D2D33C1E23757C003179F7 /* NSValueTransformer+JSONTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValueTransformer+JSONTransformer.h"; sourceTree = "<group>"; };
 		42D2D33D1E23757C003179F7 /* NSValueTransformer+JSONTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValueTransformer+JSONTransformer.m"; sourceTree = "<group>"; };
-		42D2D3401E23758A003179F7 /* HQMBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQMBaseRequest.h; sourceTree = "<group>"; };
-		42D2D3411E23758A003179F7 /* HQMBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQMBaseRequest.m; sourceTree = "<group>"; };
-		42D2D3421E23758A003179F7 /* HQMRequestCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQMRequestCallback.h; sourceTree = "<group>"; };
+		42D2D3401E23758A003179F7 /* OKBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBaseRequest.h; sourceTree = "<group>"; };
+		42D2D3411E23758A003179F7 /* OKBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseRequest.m; sourceTree = "<group>"; };
+		42D2D3421E23758A003179F7 /* OKRequestCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKRequestCallback.h; sourceTree = "<group>"; };
 		42D2D3431E23758A003179F7 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		42D2D3441E23758A003179F7 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		42D2D3471E238982003179F7 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
@@ -447,7 +447,6 @@
 				42D2D32E1E23750D003179F7 /* Controller */,
 				42D2D3311E23750D003179F7 /* Model */,
 				42D2D3341E23750D003179F7 /* Request */,
-				42D2D3371E23750D003179F7 /* View */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -483,13 +482,6 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
-		42D2D3371E23750D003179F7 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		42D2D33B1E23757C003179F7 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,9 +496,9 @@
 		42D2D33F1E23758A003179F7 /* BaseRequestAPI */ = {
 			isa = PBXGroup;
 			children = (
-				42D2D3401E23758A003179F7 /* HQMBaseRequest.h */,
-				42D2D3411E23758A003179F7 /* HQMBaseRequest.m */,
-				42D2D3421E23758A003179F7 /* HQMRequestCallback.h */,
+				42D2D3401E23758A003179F7 /* OKBaseRequest.h */,
+				42D2D3411E23758A003179F7 /* OKBaseRequest.m */,
+				42D2D3421E23758A003179F7 /* OKRequestCallback.h */,
 				42D2D3431E23758A003179F7 /* Reachability.h */,
 				42D2D3441E23758A003179F7 /* Reachability.m */,
 			);
@@ -654,7 +646,7 @@
 				42418A4F1E278440002A22BD /* MTLValueTransformer.m in Sources */,
 				42A974821E01380000D1439F /* AFURLResponseSerialization.m in Sources */,
 				42A9747E1E01380000D1439F /* AFHTTPSessionManager.m in Sources */,
-				42D2D3451E23758A003179F7 /* HQMBaseRequest.m in Sources */,
+				42D2D3451E23758A003179F7 /* OKBaseRequest.m in Sources */,
 				42A974831E01380000D1439F /* AFURLSessionManager.m in Sources */,
 				42418A551E278440002A22BD /* NSObject+MTLComparisonAdditions.m in Sources */,
 				42A974871E01380000D1439F /* UIActivityIndicatorView+AFNetworking.m in Sources */,

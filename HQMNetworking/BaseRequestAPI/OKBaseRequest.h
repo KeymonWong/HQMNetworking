@@ -1,5 +1,5 @@
 //
-//  HQMBaseRequest.h
+//  OKBaseRequest.h
 //  Buddy
 //
 //  Created by 小伴 on 2016/12/14.
@@ -7,51 +7,51 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HQMRequestCallback.h"
+#import "OKRequestCallback.h"
 
-extern NSString * const HQMNetworkDomain; ///< 请求网络域名,即你后台服务器的域名,譬如：https://www.baidu.com，后面不拼接任何路径参数的，这样子的就不是域名https://www.baidu.com/info
+extern NSString * const OKNetworkDomain; ///< 请求网络域名,即你后台服务器的域名,譬如：https://www.baidu.com，后面不拼接任何路径参数的，这样子的就不是域名https://www.baidu.com/info
 
 
 ///< HTTP Request method.
-typedef NS_ENUM(NSInteger, HQMRequestMethod) {
-    HQMRequestMethodGET = 0,
-    HQMRequestMethodPOST
+typedef NS_ENUM(NSInteger, OKRequestMethod) {
+    OKRequestMethodGET = 0,
+    OKRequestMethodPOST
 };
 
 ///< Request serializer type.
-typedef NS_ENUM(NSInteger, HQMRequestSerializerType) {
-    HQMRequestSerializerTypeHTTP = 0,
-    HQMRequestSerializerTypeJSON
+typedef NS_ENUM(NSInteger, OKRequestSerializerType) {
+    OKRequestSerializerTypeHTTP = 0,
+    OKRequestSerializerTypeJSON
 };
 
 ///< Response serializer type, which determines response serialization process and
 ///  the type of `responseObject`.
-typedef NS_ENUM(NSInteger, HQMResponseSerializerType) {
-    HQMResponseSerializerTypeHTTP = 0, ///< NSData
-    HQMResponseSerializerTypeJSON, ///< JSON
-    HQMResponseSerializerTypeXMLParser ///< NSXMLParser
+typedef NS_ENUM(NSInteger, OKResponseSerializerType) {
+    OKResponseSerializerTypeHTTP = 0, ///< NSData
+    OKResponseSerializerTypeJSON, ///< JSON
+    OKResponseSerializerTypeXMLParser ///< NSXMLParser
 };
 
 
-@interface HQMBaseRequest : NSObject
+@interface OKBaseRequest : NSObject
 @property (nonatomic, assign) BOOL showHUD;
 
-@property (nonatomic, weak) id<HQMBaseRequestDelegate> delegate;
+@property (nonatomic, weak) id<OKBaseRequestDelegate> delegate;
 
 @property (nonatomic, copy) AFConstructingBodyBlock constructingBodyBlock;
 @property (nonatomic, copy) AFURLSessionTaskProgressBlock resumableDownloadProgressBlock;
 @property (nonatomic, copy) AFURLSessionTaskProgressBlock uploadProgress;
 
-@property (nonatomic, copy) HQMRequestSuccessBlock successBlock;
-@property (nonatomic, copy) HQMRequestFailureBlock failureBlock;
+@property (nonatomic, copy) OKRequestSuccessBlock successBlock;
+@property (nonatomic, copy) OKRequestFailureBlock failureBlock;
 
-- (instancetype)initWithSuccessBlock:(HQMRequestSuccessBlock)successBlock
-                        failureBlock:(HQMRequestFailureBlock)failureBlock;
-+ (instancetype)requestWithSuccessBlock:(HQMRequestSuccessBlock)successBlock
-                           failureBlock:(HQMRequestFailureBlock)failureBlock;
+- (instancetype)initWithSuccessBlock:(OKRequestSuccessBlock)successBlock
+                        failureBlock:(OKRequestFailureBlock)failureBlock;
++ (instancetype)requestWithSuccessBlock:(OKRequestSuccessBlock)successBlock
+                           failureBlock:(OKRequestFailureBlock)failureBlock;
 
-- (void)startCompletionBlockWithSuccess:(HQMRequestSuccessBlock)success
-                                failure:(HQMRequestFailureBlock)failure;
+- (void)startCompletionBlockWithSuccess:(OKRequestSuccessBlock)success
+                                failure:(OKRequestFailureBlock)failure;
 
 /**
  带进度的图片上传
@@ -60,8 +60,8 @@ typedef NS_ENUM(NSInteger, HQMResponseSerializerType) {
  @param failure 失败回调
  @param uploadProgress 进度回调
  */
-- (void)startUploadTaskWithSuccess:(HQMRequestSuccessBlock)success
-                           failure:(HQMRequestFailureBlock)failure
+- (void)startUploadTaskWithSuccess:(OKRequestSuccessBlock)success
+                           failure:(OKRequestFailureBlock)failure
                     uploadProgress:(AFURLSessionTaskProgressBlock)uploadProgress;
 
 /**
@@ -88,21 +88,21 @@ typedef NS_ENUM(NSInteger, HQMResponseSerializerType) {
  *
  * @warning 按需重写
  */
-- (HQMRequestMethod)requestMethod; ///< 默认 GET 请求
+- (OKRequestMethod)requestMethod; ///< 默认 GET 请求
 
 /**
  * @brief 请求序列类型
  *
  * @warning 按需重写
  */
-- (HQMRequestSerializerType)requestSerializerType;
+- (OKRequestSerializerType)requestSerializerType;
 
 /**
  * @brief 响应序列类型
  *
  * @warning 按需重写
  */
-- (HQMResponseSerializerType)responseSerializerType;
+- (OKResponseSerializerType)responseSerializerType;
 
 /**
  * @brief 设置请求头
