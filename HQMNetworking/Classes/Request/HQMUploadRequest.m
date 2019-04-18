@@ -45,7 +45,7 @@
             NSData *imgData = UIImageJPEGRepresentation(img, 0.5);
             
             ///!!!:@"file"为服务端规定的
-            /* mimeType
+            /* mimeType 必须和服务端的保持一致，否则出错
              text/plain（纯文本）
              text/html（HTML文档）
              application/xhtml+xml（XHTML文档）
