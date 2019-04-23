@@ -452,6 +452,8 @@ NSString * const OKNetworkDomain = @"http://www.xiaoban.mobi";
         [_manager.tasks makeObjectsPerformSelector:@selector(cancel)];
     }
     
+//    [_manager.operationQueue cancelAllOperations];
+    
 //    // 关闭session并且取消请求(session一旦被关闭了, 这个manager就没法再发送请求)
 //    [_manager invalidateSessionCancelingTasks:YES];
 //    _manager = nil;
